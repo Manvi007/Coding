@@ -1,0 +1,45 @@
+
+import java.io.*;
+import java.util.*;
+public class GFG {
+	public static void main (String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    //System.out.println("Enter a string");
+	    String sup="ssba";
+	    int N=sup.length();
+	    HashMap<Character,Integer> sa=new HashMap<>();
+	    char letters[]={' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	    int c=0,i=0;
+	    sa=freq(sup,N);
+	    while(i!=N)
+	    {
+	        int x=sup.charAt(i);
+	        //System.out.println(sa.get((char)x));
+	        int ch=x-97+1;
+	        if(sa.containsKey((char)x)==true && sa.get((char)x)==ch)
+	        c++;
+	        i++;
+	    }
+	    if(c==N)
+	    System.out.println("Yes");
+	    else
+	    System.out.println("No");
+	}
+	
+		public static HashMap<Character,Integer> freq(String sup,int N)
+		{
+		    HashMap<Character,Integer> sa=new HashMap<>();
+            int i=0;
+	    while(i!=N)
+	    {
+	        int x=sup.charAt(i);
+	        if(sa.containsKey((char)x)==true)
+	        sa.put((char)x,sa.get((char)x)+1);
+	        else
+	        sa.put((char)x,1);
+	        i++;
+	    }
+	    return sa;
+		}
+	
+}
