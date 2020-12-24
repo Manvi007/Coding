@@ -1,0 +1,47 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+public class GFG {
+	public static void main (String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    int M=11;
+	    int N=3;
+	    int ball[]={20, 15, 5, 7, 10, 4, 2, 1, 3, 6, 8};
+	    int hole[]={21, 3, 6};
+	    int position[]=new int[M];
+	    int depth[]=new int[N]; //to store the capacity of each hole
+	    for(int i=0;i<N;i++)
+	    {
+	        depth[i]=i+1;
+	        
+	    }
+	    
+	    for(int k=0;k<ball.length;k++)
+	    {
+	       
+	        for(int j=hole.length-1;j>=0;j--)
+	        {
+	             
+	            if(hole[j]>=ball[k] && depth[j]>0)
+	            {
+	                position[k]=j+1;
+	                
+	                depth[j]--;
+	                
+	                break;
+	            }
+	            
+	            if(j==hole.length-1)
+	            position[k]=0;
+	        }
+	    }
+	    for(int i=0;i<M;i++)
+	    {
+	        System.out.print(position[i]+" ");
+	        
+	    }
+	    
+		}
+	
+}
