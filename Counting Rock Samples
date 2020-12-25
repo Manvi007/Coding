@@ -1,0 +1,21 @@
+public class RockSamples{
+
+     public static void main(String []args){
+        int samples[] = {400, 567, 890, 765, 987}; 
+        int ranges[][] = {{300, 380}, {800, 1000}};
+         int count[]=new int[ranges.length];
+         for(int i=0;i<samples.length;i++)
+         {
+            for(int j=0;j<ranges.length;j++) 
+            {
+                if(samples[i]>=ranges[j][0] && samples[i]<=ranges[j][1] )
+                count[j]=count[j]+1;
+            }
+            
+         }
+        for(int j=0;j<count.length;j++)
+        {
+        System.out.print(count[j]);
+        }
+     }
+}
