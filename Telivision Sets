@@ -1,0 +1,39 @@
+public class Telivision{
+
+     public static void main(String []args){
+        int days[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+        long n = 20;long r1 = 1500; 
+    long r2 = 1000; 
+    long tgt = 7000000; 
+    long np=0,tvs;
+        for (tvs=0;tvs<=n;tvs++)
+        {
+            long curr_tgt=0;
+            for(int m=1;m<=12;m++)
+            {
+            for(int d=1;d<=days[m];d++)
+            {
+                np=getPatients(d,m);
+                
+                np=(long)Math.min(np,n);
+                
+                if(np<=n-tvs)
+                curr_tgt+=(np*r2);
+                
+                else
+                curr_tgt+=((n - tvs) * r2  + ((np - (n - tvs)) * r1));
+            }
+            }
+            if(curr_tgt>=tgt)
+            break;
+        }
+        System.out.print((long)Math.min(tvs,n));
+        
+     }
+     
+     public static long getPatients(int D,int M)
+     {
+         long np = (long)Math.pow(6-M,2)+(long)Math.abs(D-15);
+         return np;
+     }
+}
