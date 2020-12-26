@@ -1,2 +1,2 @@
 # Java Coding
-Coding Questions with Solutions practiced during any interview.
+Coding Questions with Solutions practiced everyday.
