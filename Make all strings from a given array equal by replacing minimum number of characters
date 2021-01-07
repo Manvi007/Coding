@@ -1,0 +1,51 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Main{
+
+     public static void main(String []args){
+        
+        //BufferedReader bf=new BufferedReader(new InputStreamReader(System.in));
+        //int N=Integer.parseInt(bf.readLine());
+        int N=3;
+        
+        /*for(int i=0;i<N;i++)
+        {
+            arr[i]=bf.readLine();
+        }*/
+        String arr[] = {"west", "east", "wait"};
+        int m=arr[0].length();
+        int hash[][]=new int[256][m];
+        for(int i=0;i<N;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                    hash[i][j]++;
+                
+            }
+        }
+        
+        int cntMinOp=0;
+        int Sum,max;
+        for(int i=0;i<m;i++)
+        {
+            Sum=0;
+            max=hash[i][0];
+            for(int j=0;j<256;j++)
+            {
+                Sum+=hash[j][i];
+                if(hash[j][i]>max)
+                max=hash[j][i];
+            }
+            cntMinOp+=(Sum-max);
+        }
+        
+        System.out.print(cntMinOp);
+        
+     }
+}
