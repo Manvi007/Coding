@@ -1,0 +1,59 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Elections
+{
+	public static void main(String[] args) {
+		int N=14;
+		char arr[]={'-','-','A','B','-','-','A','B','-','-','-','A','-','-'};
+		//char arr[]={'A','-','-','-'};
+		int i=1,j=N-1,k=0;
+		while(k!=N)
+		{
+		  if(arr[i]=='A' && arr[i-1]=='-')
+		    {
+		   arr[i-1]='A';
+		   i++;
+		   k=i;
+		    }
+		   
+		    else if(arr[j]=='B' && arr[j+1]=='-')
+		    {
+		    arr[j+1]='B';
+		    j++;
+		    k=j;
+		    }
+		     
+		     else
+		    {
+		      i++;
+		     j++;
+		     k=j;
+		    }
+		}
+		int a=0,b=0;
+		for(k=0;k<N;k++)
+		{
+		   if(arr[k]=='A')
+		a++;
+		else if(arr[k]=='B')
+		b++;
+		
+		}
+		if(a>b)
+		System.out.print('A');
+		else if(a<b)
+		System.out.print('B');
+		else if(a==b)
+		System.out.print("Coalition Government"); 
+		
+		
+	}
+}
+
+
