@@ -1,0 +1,103 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class AreaOfZoo
+{
+  public static void main (String[]args)
+  {
+    double CoH = 10000;
+    double CoC = 1000;
+    double CoA = 1500;
+
+    double maxH = 250;
+    double maxC = 250;
+    double maxA = 300;
+
+    int MH = 5;
+    int NH = 5;
+
+    int MC = 15;
+    int NC = 5;
+
+    int MA = 10;
+    int NA = 10;
+
+    double TotAreaofZoo = 500;
+    double max1 = 0.0, max2 = 0.0, max3 = 0.0,max=0.0;
+    double Total = 0.0;
+    int C=0,A=0,H=0;
+    
+    //Lowest
+    if (CoC < CoH && CoC < CoA)
+    {
+        max = Math.max (MC * MC, NC);
+        C=1;
+    }
+    else if (CoA < CoH && CoA < CoC)
+    {
+        max = Math.max (MA * MA, NA);
+        A=1;
+    }
+    else
+    {
+        max = Math.max (MH * MH, NH);
+        H=1;
+    }
+    
+    //Highest    
+        if(C==1)
+        {
+            max2=max;
+            if(CoA>CoH && CoA>CoC)
+		   max3=Math.min(MA*NA ,NA);
+		   else 
+		   max1=Math.min(MH*NH ,NH);
+		   
+		   if(max1!=0.0)
+		   max3=TotAreaofZoo-(max1+max2);
+		   else
+		   max1=TotAreaofZoo-(max3+max2);
+		   
+        }
+        
+        else if(A==1)
+        {
+            max3=max;
+            if(CoC > CoH && CoC > CoA)
+		   max2=Math.min (MC * NC, NC);
+		   else 
+		   max1=Math.min(MH*NH ,NH);
+		   
+		   if(max2!=0.0)
+		   max1=TotAreaofZoo-(max3+max2);
+		   else
+		   max2=TotAreaofZoo-(max3+max1);
+		   
+        }
+        
+        else if(H==1)
+        {
+            max1=max;
+            if(CoC > CoH && CoC > CoA)
+		   max2=Math.min (MC * NC, NC);
+		   else 
+		   max3=Math.min(MA*NA ,NA);
+		   
+		   if(max2!=0.0)
+		   max3=TotAreaofZoo-(max1+max2);
+		   else
+		   max2=TotAreaofZoo-(max3+max1);
+		   
+        }
+	    
+        Total = (CoH * max1 + CoC * max2 + CoA * max3);
+
+      System.out.println (Total);
+
+  }
+}
