@@ -1,0 +1,118 @@
+
+import java.math.BigInteger;
+public class Main
+{
+	public static void main(String[] args) {
+        
+        int X=2;
+        int Y=40;
+        
+        int k=0,l=0,p=0,m=0,n=0;
+        for(int i=X;i<=Y;i++)
+        {
+            if(checkPrime(i))
+            {
+            k++;
+            }
+            
+        }
+        
+        int a[]=new int[k];
+        for(int i=X;i<Y;i++)
+        {
+            if(checkPrime(i))
+            {
+             a[m]=i;   
+            m++;
+            }
+            
+        }
+        
+        long genNum[]=new long[k*k];
+        
+        //generate sequence
+        for(int i=0;i<a.length;i++)
+        {
+            for(int j=0;j<a.length;j++)
+        {
+            genNum[l]=Long.parseLong(String.valueOf(a[i])+String.valueOf(a[j]));
+            l++;
+        }
+            
+        }
+        
+        for(int i=0;i<genNum.length;i++)
+        {
+            if(checkPrime(i))
+            {
+            p++;
+            }
+            
+        }
+        
+        long allPrime[]=new long[p*p];
+        
+        //all prime in generated sequence
+        for(int i=0;i<genNum.length;i++)
+        {
+            if(checkPrime(i))
+            {
+             allPrime[n++]=i;   
+            }
+            
+        }
+        
+        long N=allPrime.length;
+        long maxPrime=findMax(allPrime);
+        long minPrime=findMin(allPrime);
+        
+        System.out.println(fib(N,maxPrime,minPrime));
+        
+               
+     }
+     
+     public static boolean checkPrime(long N)
+     {
+         boolean b=BigInteger.valueOf(N).isProbablePrime(1) ;
+         return b;
+     }
+     
+     public static long findMax(long allPrime[])
+      {
+          long max=allPrime[0];
+          for(int i=0;i<allPrime.length;i++)
+        {
+            if(allPrime[i]>max)
+            {
+             max=allPrime[i];
+            }
+            
+        }
+        return max;
+     }
+    
+    public static long findMin(long allPrime[])
+     {
+     long min=allPrime[0];
+          for(int i=0;i<allPrime.length;i++)
+        {
+            if(allPrime[i]<min)
+            {
+             min=allPrime[i];
+            }
+            
+        }
+        return min;
+     }
+     
+     public static long fib(long N,long a,long b)
+     {
+         long x=N;
+         if(N<=1)
+         return N;
+         return fib(N-1,a,b)+fib(N-2,a,b);
+         
+     }
+}
+	
+
