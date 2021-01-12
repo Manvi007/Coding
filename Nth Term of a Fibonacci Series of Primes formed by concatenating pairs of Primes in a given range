@@ -1,0 +1,169 @@
+import java.math.BigInteger;
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+        
+        int X=2;
+        int Y=40;
+        
+        int l=0,p=0,n=0,m=0;
+        int pr[]=SieveofEratothenes(X,Y);
+        int len=(pr.length*pr.length)-pr.length;
+        
+        long genNum[]=new long[len];
+        
+        //generate sequence
+        for(int i=0;i<pr.length;i++)
+        {
+            String select=String.valueOf(pr[i]);
+            for(int j=0;j<pr.length;j++)
+        {
+            if(i!=j)
+            {
+                String s2=String.valueOf(pr[j]);
+            genNum[l++]=Long.parseLong(select.concat(s2));
+            
+            }
+            
+            
+        }
+          genNum=checkDuplicate(genNum);  
+        }
+
+        for(int i=0;i<genNum.length;i++)
+        {
+            if(checkPrime(genNum[i]))
+            {
+            p++;
+            }
+            
+        }
+        
+        long allPrime[]=new long[p];
+        
+        //all prime in generated sequence
+        for(int i=0;i<genNum.length;i++)
+        {
+            if(checkPrime(genNum[i]))
+            {
+             allPrime[n++]=genNum[i];   
+            }
+            
+        }
+
+        long N=allPrime.length;
+        long maxPrime=findMax(allPrime);
+        long minPrime=findMin(allPrime);
+        System.out.println(N);
+        System.out.println(maxPrime);
+        System.out.println(minPrime);
+        System.out.println(fib(N,maxPrime,minPrime));
+        
+               
+     }
+     
+     public static long[] checkDuplicate(long genNum[])
+     {
+         int m=0;
+         for(int i=0;i<genNum.length-1;i++)
+        {
+            if (genNum[i] != genNum[i+1]){  
+                genNum[m++] = genNum[i];  
+            }  
+        }  
+        genNum[m++] = genNum[genNum.length-1];  
+        return genNum;
+     }
+     public static int[] SieveofEratothenes(int X,int Y)
+     {
+         int k=0,ctr=0;
+         boolean primes[]=new boolean[Y+1];
+         for(int i=0;i<Y;i++)
+         {
+             primes[i]=true;
+         }
+         
+         for(int i=X;i*i<=Y;i++)
+         {
+             if(primes[i]==true)
+             {
+                 for(int j=i*i;j<=Y;j+=i)
+                     primes[j]=false;
+                     
+             }
+         }
+         
+         for(int i=2;i<=Y;i++)
+         {
+             if(primes[i]==true)
+             {
+             ctr++;
+             }
+         }
+         
+         int pr[]=new int[ctr];
+          for(int i=2;i<primes.length;i++)
+         {
+             if(primes[i]==true)
+             pr[k++]=i;
+         }
+         
+         return pr;
+     }
+     
+     public static boolean checkPrime(long N)
+     {
+         boolean b=BigInteger.valueOf(N).isProbablePrime(1) ;
+         return b;
+     }
+     
+     public static long findMax(long allPrime[])
+      {
+          long max=allPrime[0];
+          for(int i=0;i<allPrime.length;i++)
+        {
+            if(allPrime[i]>max)
+            {
+             max=allPrime[i];
+            }
+            
+        }
+        return max;
+     }
+    
+    public static long findMin(long allPrime[])
+     {
+     long min=allPrime[0];
+          for(int i=0;i<allPrime.length;i++)
+        {
+            if(allPrime[i]<min && allPrime[i]!=0 )
+            {
+             min=allPrime[i];
+            }
+            
+        }
+        return min;
+     }
+     
+     public static long fib(long N,long a,long b)
+     {
+         Stack<Long> st=new Stack<Long>();
+         int ctr=0;
+         long c=0;
+         st.push(a);
+        st.push(b);
+         while(ctr<=N)
+         {
+             c=a+b;
+             st.push(c);
+             a=b;
+             b=c;
+             ctr++;
+         }
+         
+         return st.pop();
+     }
+}
+	
+
