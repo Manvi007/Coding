@@ -1,0 +1,15 @@
+public class FarthestCell{
+
+     public static void main(String []args){
+        
+        int N = 15, M = 12, R = 1, C = 6;
+        
+        int d1=N+M-R-C;
+        int d2=R+C-2;
+        int d3=N-R+C-1;
+        int d4=M-C+R-1;
+        
+        int max=(int)Math.max(d1,(int)Math.max(d2,(int)Math.max(d3,d4)));
+        System.out.print(max);
+     }
+}
