@@ -10,7 +10,7 @@ public class StringReplaceClass{
         }
         for(int i=0;i<s1.length();i++)
             {
-            s2=s1.replaceAll("[56]","");
+            s2=s1.replaceAll("[5][6]","");
             }
         System.out.println(s2);
      }
