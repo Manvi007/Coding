@@ -6,21 +6,12 @@ public class StringReplaceClass{
         String s2="";
         for(int i=0;i<s.length();i++)
         {
-            if(s.charAt(i)!='7')
-            s1=s1+s.charAt(i);
+            s1=s.replaceAll("[7]","");
         }
-        
-        for(int i=0;i<s1.length()-2;i++)
-        {
-            if(s1.substring(i,i+2).equals("56"))
+        for(int i=0;i<s1.length();i++)
             {
-            s1.replace(s1.charAt(i),s1.charAt(i+2));
-            s1.replace(s1.charAt(i+1),s1.charAt(i+3));
+            s2=s1.replaceAll("[56]","");
             }
-            else
-            s2=s2+s1.charAt(i);
-        }
-        
         System.out.println(s2);
      }
 }
