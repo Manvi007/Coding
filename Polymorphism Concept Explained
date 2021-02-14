@@ -1,0 +1,115 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static void main(String args[] ) throws Exception {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+        Scanner s=new Scanner(System.in);
+        int start=s.nextInt();
+        int end=s.nextInt();
+        
+        Parent p=new Parent(start,end);
+        ChildOne c1=new ChildOne();
+        System.out.println(c1.filter(start,end));
+        ChildTwo c2=new ChildTwo();
+        System.out.println(c2.filter(start,end));
+    }
+}
+
+class Parent{
+    
+    public int startElement;
+    public int endElement;
+    
+    Parent()
+    {
+        startElement=0;
+        endElement=0;
+    }
+    Parent(int start,int end)
+    {
+        this.startElement=start;
+        this.endElement=end;
+    }
+    
+    public String filter(int startElement,int endElement)
+    {
+        return "";
+    }
+}
+
+class ChildOne extends Parent{
+    String primeList="";
+    int flag=0;
+    ChildOne()
+    {
+        super();
+    }
+    public String filter(int startElement,int endElement)
+    {
+        if (startElement == 1) {
+        primeList="";
+        startElement++;
+        if (endElement >= 2) {
+            primeList=primeList+startElement+" ";
+        startElement++;
+        }
+        }
+    if (startElement == 2)
+        primeList=primeList+startElement+" ";
+        
+    if (startElement % 2 == 0)
+        startElement++;
+ 
+    for (int i = startElement; i <= endElement; i = i + 2) {
+         flag = 1;
+        for (int j = 2; j * j <= i; ++j) {
+            if (i % j == 0) {
+                flag = 0;
+                break;
+            }
+        }
+        if (flag == 1)
+            primeList=primeList+i+" ";
+    }
+    return primeList;
+}
+}
+
+
+class ChildTwo extends Parent{
+    String happyList="";
+    ChildTwo()
+    {
+        super();
+    }
+    public String filter(int startElement,int endElement)
+    {
+        for(int i = startElement; i <= endElement; i++){  
+            int result = i;  
+ 
+            while(result != 1 && result != 4){  
+                result = isHappyNumber(result);  
+            }  
+              
+            if(result == 1)  
+                 happyList=happyList+i+" ";
+        } 
+        return happyList; 
+    }
+    
+    public int isHappyNumber(int num){  
+        int rem = 0, sum = 0;  
+          
+        while(num > 0){  
+            rem = num%10;  
+            sum = sum + (rem*rem);  
+            num = num/10;  
+        }  
+        return sum;  
+    }
+    
+}
