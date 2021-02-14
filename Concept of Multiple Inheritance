@@ -1,0 +1,53 @@
+import java.util.Arrays;
+import java.util.Scanner;
+interface HockeyTeam 
+{
+   public int calculateHockeyScore();
+   public int findHighestGoalByIndividualInHockey();
+}
+
+interface FootballTeam 
+{
+   public int calculateFootballScore();
+   public int findHighestGoalByIndividualInFootball();
+}
+
+class Sport implements HockeyTeam,FootballTeam
+{
+    int[] hockeyPlayers;
+    int[] footballPlayers;
+    Sport(int[] paramHockeyPlayers,int[] paramFootballPlayers)
+    {
+        hockeyPlayers=paramHockeyPlayers;
+        footballPlayers=paramFootballPlayers;
+    }
+    public int calculateHockeyScore(){
+        int sum=0;
+        for(int i=0;i<11;i++)
+        {
+            sum+=hockeyPlayers[i];
+        }
+        return sum;
+    }
+    
+    public int calculateFootballScore(){
+       int sumfoot=0;
+        for(int j=0;j<footballPlayers.length;j++)
+        {
+            sumfoot+=footballPlayers[j];
+        }
+        return sumfoot;
+   }
+   
+   public int findHighestGoalByIndividualInHockey(){
+       Arrays.sort(hockeyPlayers);
+       return hockeyPlayers[hockeyPlayers.length-1];  
+   }
+   
+   public int findHighestGoalByIndividualInFootball(){
+       Arrays.sort(footballPlayers);
+       return footballPlayers[footballPlayers.length-1];  
+   }
+    
+}
+
