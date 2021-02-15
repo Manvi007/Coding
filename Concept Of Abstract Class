@@ -1,0 +1,195 @@
+public abstract class Student {
+  public abstract String result(String MarksOfStudent);
+}
+
+public class Aided {
+public String result(String allMarks)
+{
+  double nccscore=0.0,ncccredit=0.0,sportcredit=0.0,sportscore=0.0;
+      double subjectgrades=0.0,subjectcredit=0.0;
+      int k=0;
+      String marksType[]=allMarks.split("|");
+          String subjectmarks[]=marksType[0].split(",");
+          String subjectmarkscredit[]=new String[subjectmarks.length*2];
+          for(int i=0;i<subjectmarks.length;i++)
+          {
+            String temp=subjectmarks[i];
+            String temp1="";
+            for(int j=0;j<temp.length();j++)
+            {
+              char x=temp.charAt(j);
+              if(j!=' ')
+              {
+               temp1=temp1+x;
+            }
+            else if(j==' ')
+            {
+              subjectmarkscredit[k++]=temp1;
+            }
+          }
+          }
+
+         String nccmarks[]=marksType[1].split(",");
+         if(Double.parseDouble(nccmarks[0])!=0)
+         {
+           nccscore=Double.parseDouble(nccmarks[1]);
+           ncccredit=Double.parseDouble(nccmarks[2]);
+         }
+
+        String sportsmarks[]=marksType[2].split(",");
+         if(Double.parseDouble(sportsmarks[0])!=0)
+         {
+           sportscore=Double.parseDouble(sportsmarks[1]);
+           sportcredit=Double.parseDouble(sportsmarks[2]);
+         }
+
+        for(int i=0;i<subjectmarkscredit.length-1;i=i=i+2)
+          {
+            double subjectd=Double.parseDouble(subjectmarkscredit[i]);
+           double subjectd1=Double.parseDouble(subjectmarkscredit[i+1]);
+          subjectgrades+=subjectd*subjectd1;
+          }
+
+          for(int i=1;i<subjectmarkscredit.length-1;i=i=i+2)
+          {
+          subjectcredit+=Double.parseDouble(subjectmarkscredit[i]);
+          }
+         double gradepoint=subjectgrades+nccscore*ncccredit+sportscore*sportcredit;
+         double creditpoint=subjectcredit+ncccredit+sportcredit;
+
+         double CGPA=Math.round((gradepoint/creditpoint)*100.0)/100.0;
+         return String.valueOf(CGPA);
+    }
+}
+
+
+public class SelfFinance{
+
+    public String result(String allMarks)
+    {
+      double sportcredit=0.0,sportscore=0.0,sportsgrade=0.0;
+      double subjectgrades=0.0,subjectcredit=0.0;
+      int k=0;
+      double d=0.0,dp=0.0,a=0.0,gp=0.0;
+      String marksType[]=allMarks.split("|");
+          String subjectmarks[]=marksType[0].split(",");
+          String subjectmarkscredit[]=new String[subjectmarks.length*2];
+          for(int i=0;i<subjectmarks.length;i++)
+          {
+            String temp=subjectmarks[i];
+            String temp1="";
+            for(int j=0;j<temp.length();j++)
+            {
+              char x=temp.charAt(j);
+              if(j!=' ')
+              {
+               temp1=temp1+x;
+            }
+            else if(j==' ')
+            {
+              subjectmarkscredit[k++]=temp1;
+            }
+          }
+          }
+
+          String sportsmarks[]=marksType[2].split(",");
+         if(Double.parseDouble(sportsmarks[0])!=0)
+         {
+           sportscore=Double.parseDouble(sportsmarks[1]);
+           sportcredit=Double.parseDouble(sportsmarks[2]);
+         }
+
+         for(int i=1;i<subjectmarkscredit.length-1;i=i+2)
+          {
+            double subjectd=Double.parseDouble(subjectmarkscredit[i]);
+          subjectcredit+=subjectd;
+          }
+
+          for(int i=0;i<subjectmarkscredit.length-1;i=i+2)
+          {
+          double subjectd=Double.parseDouble(subjectmarkscredit[i]);
+          if(subjectd>=75 && subjectd<=100)
+          {
+            d=subjectd-75;
+            dp=26/11;
+            a=d/dp;
+            gp=9.0+a;
+            subjectgrades+=subjectd*gp;
+          }
+          else if(subjectd>=60 && subjectd<=74)
+          {
+            d=subjectd-60;
+            dp=15/11;
+            a=d/dp;
+            gp=8.0+a;
+            subjectgrades+=subjectd*gp;
+          }
+          else if(subjectd>=50 && subjectd<=59)
+          {
+            d=subjectd-50;
+            dp=11/11;
+            a=d/dp;
+            gp=7.0+a;
+            subjectgrades+=subjectd*gp;
+          }
+          else if(subjectd>=40 && subjectd<=49)
+          {
+            d=subjectd-40;
+            dp=11/11;
+            a=d/dp;
+            gp=6.0+a;
+            subjectgrades+=subjectd*gp;
+          }
+          else if(subjectd<40)
+          {
+            gp=0;
+            subjectgrades+=subjectd*gp;
+          }
+          }
+
+if(sportscore>=75 && sportscore<=100)
+          {
+            d=sportscore-75;
+            dp=26/11;
+            a=d/dp;
+            gp=9.0+a;
+            sportsgrade+=sportscore*gp;
+          }
+          else if(sportscore>=60 && sportscore<=74)
+          {
+            d=sportscore-60;
+            dp=15/11;
+            a=d/dp;
+            gp=8.0+a;
+            sportsgrade+=sportscore*gp;
+          }
+          else if(sportscore>=50 && sportscore<=59)
+          {
+            d=sportscore-50;
+            dp=11/11;
+            a=d/dp;
+            gp=7.0+a;
+            sportsgrade+=sportscore*gp;
+          }
+          else if(sportscore>=40 && sportscore<=49)
+          {
+            d=sportscore-40;
+            dp=11/11;
+            a=d/dp;
+            gp=6.0+a;
+            sportsgrade+=sportscore*gp;
+          }
+          else if(sportscore<40)
+          {
+            gp=0;
+            sportsgrade+=sportscore*gp;
+          }
+
+
+       double gradepoint=subjectgrades+sportsgrade;
+       double creditpoint=subjectcredit+sportcredit;
+       double CGPA=Math.round((gradepoint/creditpoint)*100.0)/100.0;
+         return String.valueOf(CGPA);
+
+	}
+}
