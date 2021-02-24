@@ -1,0 +1,38 @@
+public class Solution {
+
+    // Complete the makeAnagram function below.
+    static int makeAnagram(String a, String b) {
+        int c=0;
+       int n1=a.length();
+       int n2=b.length();
+       HashMap<Character,Integer> hm=new HashMap<>();
+       for(int i=0;i<n1;i++)
+       {
+           char x=a.charAt(i);
+           for(int j=0;j<n2;j++)
+           {
+               char y=b.charAt(j);
+               if((hm.containsKey(x) && x==y))
+               {
+               hm.put(x,hm.get(x)+1);
+               //System.out.println(hm.put(b.charAt(j),hm.get(b.charAt(j))+1));
+               }
+               else if(hm.containsKey(y) != true || hm.containsKey(x) != true)
+               {
+               hm.put(y,1);
+               hm.put(x,1);
+               }
+               
+           }
+       }
+       System.out.println(hm.size());
+       for(int i:hm.values())
+       {
+           //System.out.println(i);
+           if(i%2==0)
+           c+=i;
+       }
+       
+       System.out.println(c);
+       return (n1+n2)-c;
+    }
