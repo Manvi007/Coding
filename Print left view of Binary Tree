@@ -1,0 +1,52 @@
+package binarytree;
+
+class Node{
+int data;
+Node left=right=null;
+}
+
+class BinaryTree
+{
+int maxlevel;
+
+public void leftViewBT(Node node,int level)
+{
+if(node == null)
+return;
+
+if(level>=maxlevel)
+{
+System.out.print(node.data+" ");
+maxlevel++;
+}
+}
+
+public Node createNode(int val)
+{
+Node newNode=new Node();
+newNode.data=val;
+newNode.left=null;
+newNode.right=null;
+return newNode;
+}
+
+}
+
+public class BinaryTreeBase{
+
+public static void main(String args[]) throws IOException
+{
+       BinaryTree a=new BinaryTree();
+
+        Node root=a.craeteNode(10);
+        root.left=a.createNode(2);
+        root.right = a.createNode(3);
+        root.left.left = a.createNode(7);
+        root.left.right = a.createNode(8);
+        root.right.right = a.createNode(15);
+        root.right.left = a.createNode(12);
+        root.right.right.left = a.createNode(14);
+        
+        a.leftViewBT(root,0);
+}
+}
