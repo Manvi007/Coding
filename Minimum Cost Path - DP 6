@@ -1,0 +1,35 @@
+public class MinimumCost{
+
+static int row=3;
+static int col=3;
+
+static int minCost(int cost[][])
+{
+ for(int i=1;i<row;i++)
+ {
+ cost[i][0]+=cost[i-1][0];
+ }
+ 
+ for(int j=1;j<col;j++)
+ {
+cost[0][j]+=cost[0][j-1];
+}
+
+for(int i=1;i<row;i++)
+{
+for(int j=1;j<col;j++)
+{
+cost[i][j]+=Math.min(cost[i-1][j-1],Math.min(cost[i-1][j],cost[i][j-1]);
+}
+}
+return cost[row-1][col-1];
+}
+
+public static void main(String args[])throws IOException
+{
+int cost[][] = {{1, 2, 3},
+                  {4, 8, 2},
+                  {1, 5, 3} };
+  System.out.print(minCost(cost) + "\n");
+  }
+  }
