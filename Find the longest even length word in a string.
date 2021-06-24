@@ -1,0 +1,24 @@
+import java.util.*;
+public class LongestEvenString{
+
+     public static void main(String []args){
+         int max=0;
+        String s="I am smarter than you";
+        String a[]=s.split(" ");
+        HashMap<String,Integer> hm=new HashMap<>();
+        for(int i=0;i<a.length;i++)
+        {
+            if(hm.containsKey(a[i])==false && a[i].length()%2==0)
+            hm.put(a[i],a[i].length());
+            
+        }
+        for(String s1 : hm.keySet())
+        {
+            if(max<hm.get(s1))
+            max=hm.get(s1);
+        }
+        
+        System.out.println(max);
+        
+     }
+}
