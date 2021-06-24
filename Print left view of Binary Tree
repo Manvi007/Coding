@@ -38,7 +38,7 @@ public static void main(String args[]) throws IOException
 {
        BinaryTree a=new BinaryTree();
 
-        Node root=a.craeteNode(10);
+        Node root=a.createNode(10);
         root.left=a.createNode(2);
         root.right = a.createNode(3);
         root.left.left = a.createNode(7);
