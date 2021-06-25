@@ -1,1 +1,89 @@
+public class LinkedList{
 
+static Node head;
+
+     public static void main(String []args){
+        
+        LinkedList list = new LinkedList();
+        list.head = new Node(50);
+        list.head.next = new Node(20);
+        list.head.next.next = new Node(15);
+        list.head.next.next.next = new Node(4);
+        list.head.next.next.next.next = new Node(10);
+ 
+        // Creating a loop for testing
+        head.next.next.next.next.next = head.next.next;
+        list.detectAndRemoveLoop(head);
+        System.out.println("Linked List after removing loop : ");
+        list.printList(head);
+     }
+     
+     static void detectAndRemoveLoop(Node root)
+     {
+      Node slow=root,fast=root;
+      
+      slow=slow.next;
+      fast=fast.next.next;
+      
+      if(root==null || root.next==null)
+      return;
+      
+      while(fast!=null && fast.next!=null)
+      {
+         if(slow==fast)break;
+         
+         slow=slow.next;
+         fast=fast.next.next;
+         }
+         
+         if(slow==fast)
+         {
+         slow=root;
+         if(slow!=fast)
+         {
+         while(slow.next!=fast.next)
+         {
+          slow=slow.next;
+          fast=fast.next;
+          }
+          fast.next=null;
+          }
+          else
+          {
+          while(fast.next!=slow)
+          {
+          fast=fast.next;
+          }
+          
+          fast.next=null;
+          }
+          }
+      }
+      
+   }
+   
+   public static void printList(Node root)
+   {
+   while(root!=null)
+   {
+   System.out.print(root.data+" ");
+   root=root.next;
+   }
+   }
+   
+}
+
+class Node{
+
+int data;
+Node next;
+
+public Node(int val)
+{
+data=val;
+next=null;
+}
+}
+
+   
+   
