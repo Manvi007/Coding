@@ -25,7 +25,7 @@ public class ArrayRotation{
          
          for(int j=d;j<n;j++)
          {
-             a[j-2]=a[j];
+             a[j-d]=a[j];
          }
          
          for(int j=n-d;j<n;j++)
