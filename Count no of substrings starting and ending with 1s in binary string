@@ -1,0 +1,25 @@
+public class StringLine{
+
+     public static void main(String []args){
+       String s="1001011";
+       int r=2,n=0;
+       
+       for(int i=1;i<=s.length();i++)
+       {
+           //System.out.println(s.substring(i-1,i));
+           if(s.substring(i-1,i).equals("1"))
+           n++;
+       }
+       //System.out.println(n);
+       int nfact=getFact(n);
+       int diffrn=getFact(n-r);
+       int total=nfact/(r*diffrn);
+       System.out.print(total);
+       
+     }
+     
+     public static int getFact(int num)
+     {
+         return (num==1 || num==0)?1:num*getFact(num-1);
+     }
+}
