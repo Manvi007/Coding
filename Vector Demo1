@@ -1,0 +1,35 @@
+import java.util.*;
+public class FizzBuzzTest{
+
+     public static void main(String []args){
+        int n=15;
+        Vector<String> result=getVect(n);
+        for(int i=0;i<result.size();i++)
+        {
+            System.out.print(result.get(i)+" ");
+        }
+     }
+     
+     public static Vector<String> getVect(int n)
+     {
+         Vector<String> v=new Vector<>(n);
+         for(int i=1;i<=n;i++)
+         {
+             if(i%3==0)
+             {
+                 v.add("FIZZ");
+             }
+             else if(i%5==0)
+             {
+                 v.add("BUZZ");
+             }
+             else
+             {
+                 v.add(String.valueOf(i));
+             }
+         }
+         
+         return v;
+         
+     }
+}
