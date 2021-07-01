@@ -1,0 +1,61 @@
+//Using sorting and 2 pointer approach with TC- O(NlogN)
+
+import java.util.*;
+public class PairClass{
+
+     public static void main(String []args){
+        Vector<Integer> sample=new Vector<>();
+        sample.add(1);
+        sample.add(2);
+        sample.add(3);
+        sample.add(4);
+        sample.add(5);
+        sample.add(6);
+        sample.add(7);
+        sample.add(8);
+        sample.add(9);
+        sample.add(15);
+        
+        Vector<String> result=getTriplets(sample,18);
+        for(int i=0;i<result.size();i++)
+        {
+            System.out.println(result.get(i)+",");
+        }
+     }
+     
+     public static Vector<String> getTriplets(Vector<Integer> sample,int targetSum)
+     {
+         Vector<String> v=new Vector<>();
+    
+         for(int i=0;i<=sample.size()-3;i++)
+         {
+             int j=i+1;
+             int k=sample.size()-1;
+             while(j<k)
+             {
+             int currentSum=sample.get(i);
+             currentSum+=sample.get(j);
+             currentSum+=sample.get(k);
+             if(currentSum==targetSum)
+             {
+                 String s=String.valueOf(sample.get(i))+","+String.valueOf(sample.get(j))+","+String.valueOf(sample.get(k));
+                 v.add(s);
+                 j++;
+                 k--;
+                 //s="";
+             }
+             else if(currentSum<targetSum)
+             {
+                 j++;
+             }
+             else 
+             {
+                 k--;
+             }
+             }
+         }
+         
+         return v;
+         
+     }
+}
