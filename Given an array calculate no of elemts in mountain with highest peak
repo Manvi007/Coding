@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+
+public class HighestPeak{
+
+     public static void main(String []args){
+         
+         Vector<Integer> v=new Vector<>();
+          v.add(5);
+          v.add(6);
+          v.add(1);
+          v.add(2);
+          v.add(3);
+          v.add(4);
+          v.add(5);
+          v.add(4);
+          v.add(3);
+          v.add(2);
+          v.add(0);
+          v.add(1);
+          v.add(2);
+          v.add(3);
+          v.add(-2);
+          v.add(4);
+          
+          System.out.print(getLargestPeak(v));
+        
+     }
+     
+     public static int getLargestPeak(Vector<Integer> v)
+     {
+         int largest=0;
+         for(int i=1;i<=v.size()-2;)
+         {
+             
+             //check for peak
+             if(v.get(i)>v.get(i-1) && v.get(i)>v.get(i+1))
+             {
+                 
+                 //check in left of peak
+                 int j=i;
+                 int c=1;
+                 while(j>=1 && v.get(j)>v.get(j-1))
+                 {
+                     j--;
+                     c++;
+                 }
+                 
+                 //check in right of peak
+                 while(i<=v.size()-2 && v.get(i)>v.get(i+1))
+                 {
+                     i++;
+                     c++;
+                 }
+                 largest=(int)Math.max(largest,c);
+             }
+             else
+             {
+                 i++;
+             }
+         }
+         
+         return largest;
+     }
+}
