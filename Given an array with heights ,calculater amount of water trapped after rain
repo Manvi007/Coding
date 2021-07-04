@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+
+public class Rains{
+
+     public static void main(String []args){
+         Vector<Integer> v=new Vector<>();
+         v.add(0);
+         v.add(1);
+         v.add(0);
+         v.add(2);
+         v.add(1);
+         v.add(0);
+         v.add(1);
+         v.add(3);
+         v.add(2);
+         v.add(1);
+         v.add(2);
+         v.add(1);
+         
+        System.out.println(getWaterTrap(v));
+     }
+     
+     public static int getWaterTrap(Vector<Integer> v)
+     {
+         Vector<Integer> left=new Vector<>();
+         Vector<Integer> right=new Vector<>();
+         
+         int n=v.size();
+         
+         left.add(v.get(0));
+         right.add(v.get(n-1));
+         
+         int capacity=0;
+         
+         //creating left array
+         for(int i=1;i<n;i++)
+         {
+                 left.add((int)Math.max(left.get(i-1),v.get(i)));
+                 right.add((int)Math.max(right.get(i-1),v.get(n-i-1)));
+                 
+         }
+         
+         Collections.reverse(right);
+         
+         //get amount of water trapped
+         for(int i=0;i<v.size();i++)
+         {
+             capacity+=((int)Math.min(left.get(i),right.get(i)))-v.get(i);
+         }
+         
+         return capacity;
+     }
+}
