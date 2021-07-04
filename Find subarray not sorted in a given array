@@ -1,0 +1,90 @@
+Step1 - Find the smallest element unsorted and largest element unsorted
+Step2 - To check that ,create function boolean type for checking out of order position 
+Step3 - Chcek for left and right where position to fix and return left,right
+
+
+import java.io.*;
+import java.util.*;
+
+public class UnsortedSubarray{
+
+     public static void main(String []args){
+         Vector<Integer> v=new Vector<>();
+         v.add(1);
+         v.add(2);
+         v.add(3);
+         v.add(4);
+         v.add(5);
+         v.add(8);
+         v.add(6);
+         v.add(7);
+         v.add(9);
+         v.add(10);
+         v.add(11);
+         v.add(12);
+         
+        Vector<Integer> y=getSubarrayPair(v);
+        System.out.print(y.get(0)+","+y.get(1));
+     }
+     
+     public static Vector<Integer> getSubarrayPair(Vector<Integer> v)
+     {
+         int smallest=Integer.MAX_VALUE;
+         int largest=Integer.MIN_VALUE;
+         
+         Vector<Integer> y=new Vector<>();
+         
+         int n=v.size();
+         
+         //calculate smallest and largest
+         for(int i=0;i<n;i++)
+         {
+             int x=v.get(i);
+             
+             if(outOfOrder(v,i))
+             {
+                 smallest=(int)Math.min(smallest,x);
+                 largest=(int)Math.max(largest,x);
+             }
+         }
+         
+         //check if whole arrays is sorted and no such subarray unsorted
+         if(smallest==Integer.MAX_VALUE)
+         {
+             y.add(-1);
+             y.add(-1);
+             return y;
+         }
+        
+        //else
+        int left=0;
+        while(smallest>=v.get(left))
+        {
+            left++;
+        }
+        
+        int right=n-1;
+        while(largest<=v.get(right))
+        {
+            right--;
+        }
+        
+        y.add(left);
+        y.add(right);
+        
+        return y;
+     }
+     
+     public static boolean outOfOrder(Vector<Integer> v ,int i)
+     {
+         int x=v.get(i);
+         
+         if(i==0)
+         return x>v.get(1);
+         
+         if(i==v.size()-1)
+         return x<v.get(i-1);
+         
+         return x>v.get(i+1) || x<v.get(i-1);
+     }
+}
