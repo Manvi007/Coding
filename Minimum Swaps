@@ -1,0 +1,60 @@
+Step1 - Correct location of each elemnt using sorting just to know where showuld element come after sorting.
+Step2 - If N elemnts in a cycle ,we will have n-1 swaps
+
+import java.io.*;
+import java.util.*;
+
+public class SwapMin{
+
+     public static void main(String []args){
+        int arr[]={2,4,5,1,3};
+        System.out.print(minSwaps(arr));
+     }
+     
+     public static int minSwaps(int a[])
+     {
+         int ans=0;
+         HashMap<Integer,Integer> hm=new HashMap<>();
+         
+         //store the current indices and sort using TreeMap
+         for(int i=0;i<a.length;i++)
+         {
+             hm.put(a[i],i);
+         }
+         
+         //sorting to cehck for actual loaction 
+         Arrays.sort(a);
+
+         //main logic
+         boolean visit[]=new boolean[a.length];
+         for(int i=0;i<visit.length;i++)
+         {
+             visit[i]=false;
+         }
+         
+         for(int i=0;i<a.length;i++)
+         {
+             //if element is visited or elemnt is in right pos
+             int old_pos=hm.get(a[i]);
+             if(visit[i]==true || old_pos==i)
+             {
+                 continue;
+             }
+             
+             //if visiting elemnt first time
+                 int node=i;
+                 int cycle=0;
+                 while(visit[node]==false)
+                 {
+                     visit[node]=true;
+                     int next_node=hm.get(a[node]);
+                     node=next_node;
+                     cycle+=1;
+                 }
+                 
+             ans+=(cycle-1);
+             
+         }
+         return ans;
+     }
+}
